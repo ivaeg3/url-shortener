@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "github.com/ivaeg3/url-shortener/api/proto";
+
+service Shortener {
+    rpc CreateShortURL(CreateRequest) returns (CreateResponse);
+    rpc GetOriginalURL(GetRequest) returns (GetResponse);
+}
+
+message CreateRequest {
+    string original_url = 1;
+}
+
+message CreateResponse {
+    string short_url = 1;
+}
+
+message GetRequest {
+    string short_url = 1;
+}
+
+message GetResponse {
+    string original_url = 1;
+}
