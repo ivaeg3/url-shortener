@@ -35,7 +35,18 @@ docker run -d -p 50051:50051 \
     url-shortener
 ```
 
-### 4. Запуск локально
+### 4. Генерация файлов
+
+Перед запуском сервиса локально необходимо сгенерировать Go файлы из `.proto` с помощью `protoc`:
+
+```bash
+protoc --go_out=./api/proto/gen --go_opt=paths=source_relative \
+       --go-grpc_out=./api/proto/gen --go-grpc_opt=paths=source_relative \
+       --proto_path=./api/proto \
+       ./api/proto/*.proto
+```
+
+### 5. Запуск локально
 
 Установите зависимости:
 
@@ -49,7 +60,7 @@ go mod tidy
 go run cmd/server/main.go
 ```
 
-### 5. Конфигурация
+### 6. Конфигурация
 
 Для настройки сервиса используйте переменные окружения или опции:
 
